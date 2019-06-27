@@ -11,3 +11,6 @@ def countPrimes(self, n):
 
     # new branch
     # 19:12
+
+def newBranch():
+    return "ok"
