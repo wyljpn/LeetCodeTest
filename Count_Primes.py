@@ -17,3 +17,6 @@ def newBranch():
 
 def commit():
     return "ok"
+
+def commit_push():
+    return "ok"
