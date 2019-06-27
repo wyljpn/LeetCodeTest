@@ -14,9 +14,3 @@ def countPrimes(self, n):
 
 def newBranch():
     return "ok"
-
-def justCommit():
-    return "commit"
-
-def Commit():
-    return "commit"
