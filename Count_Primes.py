@@ -8,3 +8,6 @@ def countPrimes(self, n):
             for j in range(2, (n-1)//i+1):
                 res[i*j] = False
     return sum(res)
+
+def masterCommit():
+    return "masterCommit"
