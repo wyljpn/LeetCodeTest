@@ -17,3 +17,6 @@ def newBranch():
 
 def justCommit():
     return "commit"
+
+def Commit():
+    return "commit"
