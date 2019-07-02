@@ -13,11 +13,6 @@ class Solution(object):
             G[x - 1].append(y - 1)
             G[y - 1].append(x - 1)
         for i in range(N):
-            # 减去第i个garden所连接的garden的花的type。然后选从中选一个。
-            # i=0: {1,2,3,4} - {与0号garden相邻的花的type}  pop:4
-            # i=1: {1,2,3,4} - {与1号garden相邻的花的type}  pop:
-            # i=2: {1,2,3,4} - {与2号garden相邻的花的type}  pop:
-            # i=3: {1,2,3,4} - {与3号garden相邻的花的type}  pop:
             res[i] = ({1, 2, 3, 4} - {res[j] for j in G[i]}).pop()
         return res
 
