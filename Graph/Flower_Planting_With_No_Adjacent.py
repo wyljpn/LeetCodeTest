@@ -5,11 +5,14 @@ class Solution(object):
         :type paths: List[List[int]]
         :rtype: List[int]
         """
+        # 下标从0开始
         res = [0] * N
         # 标记相邻的garden
         G = [[] for i in range(N)]
         for x, y in paths:
-            #  因为编号是从1开始，所以下标要-1。
+            # 因为题目中garden的编号是从1开始，
+            # 但是res从0开始，需要统一下标。
+            # 这边将garden的下标要-1。
             G[x - 1].append(y - 1)
             G[y - 1].append(x - 1)
         for i in range(N):
@@ -40,3 +43,6 @@ class Solution(object):
             dfs(cur)
 
         return res[1:]
+
+so = Solution()
+print(so.gardenNoAdj(3, [[1,2],[2,3],[3,1]]))
