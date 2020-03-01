@@ -23,15 +23,6 @@ class Solution(object):
             res = max(res, dp[i])
         return res
 
-    def maxSubArray_3(self, nums):
-        if not nums:
-            return None
-        loc = glo = nums[0]
-        for i in range(1, len(nums)):
-            loc = max(nums[i], loc + nums[i])
-            glo = max(max, loc)
-        return glo
-
 
 so = Solution()
 print(so.maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
