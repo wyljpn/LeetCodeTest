@@ -15,10 +15,9 @@ class Solution(object):
         """
         if not root:
             return 0
-        from collections import deque
-        queue = deque([(root, 1)])
+        queue = [(root, 1)]
         while queue:
-            curr, val = queue.popleft()
+            curr, val = queue.pop(0)
             # 因为是BFS,最后一次的循环一定是深度最深的node。返回此node的val即是最大深度。
             if not curr.left and not curr.right and not queue:
                 return val
@@ -30,7 +29,7 @@ class Solution(object):
     # DFS
     def maxDepth_2(self, root):
         res = 0
-        stack = [(root, 0)]
+        stack = [(root, 1)]
         while stack:
             node, level = stack.pop()
             # 计算到叶子时，取叶子的深度与全局深度的较大值

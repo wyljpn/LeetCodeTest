@@ -35,13 +35,20 @@ class Solution(object):
 
     # recursive solution
     def isSymmetric_2(self, root):
-        if not root:
-            return True
+        def isSym(L, R):
 
-    def isSymmetricTree(self, node1, node2):
-        # 两个都不为None
-        if node1 and node2:
-            return node1.val == node2.val and self.isSymmetric(node1.left, node2.right) and self.isSymmetric(self.right, self.left)
-        # 有一个是None时返回False，两个都是None时返回True
-        else:
-            return node1 == node2
+            if L and R and L.val == R.val:
+                return isSym(L.left, R.right) and isSym(L.right, R.left)
+
+            return L == R
+        return not root or isSym(root, root)
+
+    # BFS
+    # 一次检查一层
+    def isSymmetric_3(self, root):
+        queue = [root]
+        while queue:
+            values = [i.val if i else None for i in queue]
+            if values != values[::-1]: return False
+            queue = [child for i in queue if i for child in (i.left, i.right)]
+        return True

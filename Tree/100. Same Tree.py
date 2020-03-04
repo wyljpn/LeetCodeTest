@@ -15,8 +15,8 @@ class Solution(object):
         # 两个都不为None
         if p and q:
             return p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        # 一个为None时返回False，或者都为None时返回True
         else:
+        # 一个为None时返回False，或者都为None时返回True
             return p == q
 
     # DFS with stack
@@ -42,6 +42,7 @@ class Solution(object):
     def isSameTree_3(self, p, q):
         queue = [(p, q)]
         while queue:
+            # pop 出最先进入的queue的tuple
             node1, node2 = queue.pop(0)
             # 两个都为None
             if not node1 and not node2:

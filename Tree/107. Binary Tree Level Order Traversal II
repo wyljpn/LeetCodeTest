@@ -33,8 +33,10 @@ class Solution(object):
         while stack:
             node, level = stack.pop()
             if node:
+                # 应该level是从0而不是1开始的，所以跟len比较的时候要加1
                 if len(res) < level + 1:
                     res.insert(0, [])
+                # 颠倒顺序
                 res[-(level + 1)].append(node.val)
                 # 因为要求是从左到右，所以right,left,栈顶取left
                 stack.append((node.right, level + 1))
