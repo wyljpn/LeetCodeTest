@@ -1,49 +1,34 @@
-class MinStack(object):
 
+class MinStack(object):
     def __init__(self):
-        """
-        initialize your data structure here.
-        """
         self.q = []
 
+    # 将x与当前的最小值组成tuple进行保存。
+    # @param x, an integer
+    # @return an integer
     def push(self, x):
-        """
-        :type x: int
-        :rtype: None
-        """
         curMin = self.getMin()
-        if x < curMin:
+        # 不能是 not None, 因为not 0 为True
+        if curMin == None or x < curMin:
             curMin = x
-        # 放入当前值和此时的最小值
         self.q.append((x, curMin))
 
+    # 去除index最大的元素
+    # @return nothing
     def pop(self):
-        """
-        :rtype: None
-        """
         self.q.pop()
 
+    # 返回index最大的元素
+    # @return an integer
     def top(self):
-        """
-        :rtype: int
-        """
         if len(self.q) == 0:
             return None
         else:
-            return self.q[len(self.q) - 1][0]
+            return self.q[-1][0]
 
+    # @return an integer
     def getMin(self):
-        """
-        :rtype: int
-        """
         if len(self.q) == 0:
             return None
         else:
-            return self.q[len(self.q) - 1][1]
-
-# Your MinStack object will be instantiated and called as such:
-# obj = MinStack()
-# obj.push(x)
-# obj.pop()
-# param_3 = obj.top()
-# param_4 = obj.getMin()
+            return self.q[-1][1]
