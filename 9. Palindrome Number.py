@@ -26,11 +26,35 @@ class Solution(object):
         return True
 
 
+    def isPalindrome_2(self, x):
+        if x < 0:
+            return False
+
+        reversed_number = self.reverseNumber(x)
+
+        if x == reversed_Number:
+            return True
+        else:
+            return False
+
+
+        pass
+
+    def reverseNumber(self, x):
+        result = 0
+        while x != 0:
+            digit = x % 10
+            result = result * 10 + digit
+            x = int (x / 10)
+            print(result, x)
+        return result
+
 if __name__ == "__main__":
     so = Solution()
 
-    print(so.isPalindrome(121))
-    print(so.isPalindrome(-121))
-    print(so.isPalindrome(10))
-    print(so.isPalindrome(1000021))
-    print(so.isPalindrome(1210021))
+    # print(so.isPalindrome(121))
+    # print(so.isPalindrome(-121))
+    # print(so.isPalindrome(10))
+    # print(so.isPalindrome(1000021))
+    # print(so.isPalindrome(1210021))
+    print(so.reverseNumber(123))
