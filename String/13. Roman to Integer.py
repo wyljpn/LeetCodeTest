@@ -9,12 +9,16 @@ class Solution(object):
                "CM": 900, "M": 1000}
         i = 0
         while i < len(s):
-            if i + 1 < len(s) and dic.get(s[i] + s[i + 1], -1) != -1:
-                res += dic.get(s[i] + s[i + 1])
+            # Two characters in the dictionary, add its value to the result.
+            # Tip: we can specify end index larger than its length.
+            if dic.get(s[i:i+2], -1) != -1:
+                res += dic.get(s[i:i+2])
                 i += 2
             else:
+                # Single character, and its value to the result.
                 res += dic.get(s[i])
-                i += 1
+                i +=1
+
         return res
 
     def romanToInt_1(self, s):
@@ -27,8 +31,11 @@ class Solution(object):
     def romanToInt_2(self, s):
         dic = {'M': 1000, 'D': 500, 'C': 100, 'L': 50, 'X': 10, 'V': 5, 'I': 1}
         res, p = 0, 'I'
+        # Reverse string, then calculate.
+        # If current value larger than previous, then add it to result
+        # else subtract it from result
         for c in s[::-1]:
-            res, p = res - dic[c] if dic[c] < dic[p] else res + dic[c], c
+            res, p = res + dic[c] if dic[c] >= dic[p] else res - dic[c], c
         return res
 
 

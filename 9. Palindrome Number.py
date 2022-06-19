@@ -32,7 +32,7 @@ class Solution(object):
 
         reversed_number = self.reverseNumber(x)
 
-        if x == reversed_Number:
+        if x == reversed_number:
             return True
         else:
             return False
@@ -46,7 +46,7 @@ class Solution(object):
             digit = x % 10
             result = result * 10 + digit
             x = int (x / 10)
-            print(result, x)
+            # print(result, x)
         return result
 
 if __name__ == "__main__":
@@ -58,3 +58,10 @@ if __name__ == "__main__":
     # print(so.isPalindrome(1000021))
     # print(so.isPalindrome(1210021))
     print(so.reverseNumber(123))
+
+
+    print(so.isPalindrome_2(121))
+    print(so.isPalindrome_2(-121))
+    print(so.isPalindrome_2(10))
+    print(so.isPalindrome_2(1000021))
+    print(so.isPalindrome_2(1210021))
