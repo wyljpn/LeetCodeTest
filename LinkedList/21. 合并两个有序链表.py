@@ -18,8 +18,9 @@ class Solution(object):
     # 迭代
     def mergeTwoLists(self, l1, l2):
 
-        prev = prehead = ListNode(None)
-
+        # head is used to keep the first node
+        # prev is used to make the previous node
+        prev = head = ListNode(None)
 
         while l1 and l2:
             if l1.val <= l2.val:
@@ -30,12 +31,13 @@ class Solution(object):
                 l2 = l2.next
             prev = prev.next
 
+        # Link to the rest part of list1 or list2
         if l1:
             prev.next = l1
         if l2:
             prev.next = l2
 
-        return prehead.next
+        return head.next
 
     # 递归
     def mergeTwoLists_1(self, l1, l2):
