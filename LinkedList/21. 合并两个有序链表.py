@@ -41,10 +41,12 @@ class Solution(object):
 
     # 递归
     def mergeTwoLists_1(self, l1, l2):
+        # 如果其中一个list为空，则结果的尾部接上另一个list的部分。
         if l1 is None:
             return l2
         if l2 is None:
             return l1
+        # 如果当前list1的node小于list2的，list1的下一个node与list2的剩余部分比较
         elif l1.val < l2.val:
             l1.next = self.mergeTwoLists_1(l1.next, l2)
             return l1
