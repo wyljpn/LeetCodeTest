@@ -115,7 +115,7 @@ class Solution(object):
 
     # 解法4
     #
-    def searchRange_2(self, nums, target):
+    def searchRange_4(self, nums, target):
         """
         :type nums: List[int]
         :type target: int
@@ -123,15 +123,34 @@ class Solution(object):
         """
 
 
+        def binarySearch(nums, target):
+            left, right = 0, len(nums) - 1
+            while left <= right:
+                middle = left + (right - left) // 2
+                if nums[middle] >= target:
+                    right = middle - 1
+                elif nums[middle] < target:
+                    left = middle + 1
+
+            return left
+
+        leftBorder = binarySearch(nums, target)  # 搜索左边界。
+        rightBorder = binarySearch(nums, target + 1) - 1  # 搜索右边界
+        # 情况一和情况二
+        # 当target大于所有元素，则leftBorder == len(nums）
+        # 当target在nums范围中，但不等于任意一个元素时，nums[leftBorder] != target
+        if leftBorder == len(nums) or nums[leftBorder] != target:
+            return [-1, -1]
+        return [leftBorder, rightBorder]
 
 
 if __name__ == "__main__":
     so = Solution()
     print(so.searchRange_1([5, 7, 7, 8, 8, 10], 8))
-    print(so.searchRange_2([5, 7, 7, 8, 8, 10], 8))
+    print(so.searchRange_4([5, 7, 7, 8, 8, 10], 8))
     print(so.searchRange_1([5 ,7, 7, 8, 8, 10], 9))
-    print(so.searchRange_2([5 ,7, 7, 8, 8, 10], 9))
+    print(so.searchRange_4([5 ,7, 7, 8, 8, 10], 9))
     print(so.searchRange_1([5,7,7,8,8,10], 6))
-    print(so.searchRange_2([5,7,7,8,8,10], 6))
+    print(so.searchRange_4([5,7,7,8,8,10], 6))
     print(so.searchRange_1([], 0))
-    print(so.searchRange_2([], 0))
+    print(so.searchRange_4([], 0))
