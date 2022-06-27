@@ -113,6 +113,16 @@ class Solution(object):
         return [left, right]
 
 
+    # 解法4
+    #
+    def searchRange_2(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+
+
 
 
 if __name__ == "__main__":

@@ -48,8 +48,10 @@ class Solution(object):
             else:
                 return middle
 
-        # 如果都没找到的话，left会等于right，并且nums[right]会小于target。
-        # 所以right + 1 是要插入的index。
+        # ·target在list左边，则left=0，right=-1
+        # ·target在元素与元素之间，则left>right, right+1是要插入大位置
+        # ·target在list右边，比所有元素都大，则要用right+1新增一个
+        # 综合考虑，插入大位置是right+1
         return right + 1
 
     # 左闭右开写法
