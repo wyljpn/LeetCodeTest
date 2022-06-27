@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e4eab42-a396-4b0c-8b1f-88b75a9f92a2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Array/35. Search Insert Position.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LinkedList/21. 合并两个有序链表.py" beforeDir="false" afterPath="$PROJECT_DIR$/LinkedList/21. 合并两个有序链表.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +80,8 @@
       <updated>1655540672177</updated>
       <workItem from="1655953703530" duration="47000" />
       <workItem from="1655991467457" duration="1962000" />
-      <workItem from="1656123130338" duration="1321000" />
+      <workItem from="1656123130338" duration="1558000" />
+      <workItem from="1656327002963" duration="1836000" />
     </task>
     <servers />
   </component>
