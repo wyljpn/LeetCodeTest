@@ -40,7 +40,7 @@ class Solution(object):
         right = len(nums) - 1
 
         while left <= right:
-            middle = left + (right - left) / 2
+            middle = int(left + (right - left) / 2)
             if nums[middle] > target:
                 right = middle - 1
             elif nums[middle] < target:
@@ -89,3 +89,13 @@ class Solution(object):
                 return i
 
         return len(nums)
+
+
+if __name__ == "__main__":
+    so = Solution()
+
+    print(so.searchInsert_1([1,3,5,6], 5))
+    print(so.searchInsert_1([1,3,5,6], 2))
+    print(so.searchInsert_1([1,3,5,6], 7))
+    print(so.searchInsert_1([1,3,5,6], 0))
+    print(so.searchInsert_1([], 0))
