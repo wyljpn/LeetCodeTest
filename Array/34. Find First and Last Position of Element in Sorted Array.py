@@ -27,7 +27,7 @@ class Solution(object):
             left = 0
             right = len(nums) - 1
             # 为什么要设置成-2，而不是-1?
-            # 当target大于所有元素时，rightBorder为-2
+            # 当target小于所有元素时，rightBorder为-2
             rightBorder = -2
 
             while left <= right:
@@ -44,7 +44,7 @@ class Solution(object):
 
             left = 0
             right = len(nums) - 1
-            # 当target小于所有元素时，leftBorder为-2
+            # 当target大于所有元素时，leftBorder为-2
             leftBorder = -2
 
             while left <= right:
