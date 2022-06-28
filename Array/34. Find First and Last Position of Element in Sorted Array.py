@@ -112,9 +112,41 @@ class Solution(object):
 
         return [left, right]
 
+    # 解法3
+    def searchRange_3(self, nums, target):
+
+        def binarySearch(nums, target, lower):
+            left = 0
+            right = len(nums) - 1
+            # 如果target大于所有nums中的元素，则ans不会被修改，会等会len(nums)
+            # 如果target小于所有nums中的元素，ans会一直被修改，最终会等于0
+            ans = len(nums)
+
+            while left <= right:
+                middle = left + (right - left) // 2
+                # 当lower为True，判断nums[middle] >= target，用于查找左边界
+                # 当lower为False，判断nums[middle] > target，用于查找右边界
+                if (lower and nums[middle] >= target) or nums[middle] > target:
+                    right = middle - 1
+                    ans = right
+                else:
+                    left = middle + 1
+            return ans
+
+        rightBorder = binarySearch(nums, target, True)
+        leftBorder = binarySearch(nums, target, False)
+
+        if leftBorder <= rightBorder and rightBorder < len(nums) and nums[leftBorder] == target and nums[rightBorder] == target:
+            return [leftBorder, rightBorder]
+        else:
+            return [-1, -1]
+
+
+
+
+
 
     # 解法4
-    #
     def searchRange_4(self, nums, target):
         """
         :type nums: List[int]
