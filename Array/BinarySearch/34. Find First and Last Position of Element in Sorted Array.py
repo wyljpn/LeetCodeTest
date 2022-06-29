@@ -128,22 +128,30 @@ class Solution(object):
                 # 当lower为False，判断nums[middle] > target，用于查找右边界
                 if (lower and nums[middle] >= target) or nums[middle] > target:
                     right = middle - 1
-                    ans = right
+                    # 保留当前的middle，因为不确定nums[middle-1]是否等于target
+                    ans = middle
                 else:
                     left = middle + 1
             return ans
 
-        rightBorder = binarySearch(nums, target, True)
-        leftBorder = binarySearch(nums, target, False)
+        leftBorder = binarySearch(nums, target, True)
+        # nums[middle]>target并且nums[middle-1]<=target，那么middle-1(即ans-1)是右边界
+        rightBorder = binarySearch(nums, target, False) -1
+        print("leftBorder： ", leftBorder)
+        print("rightBorder： ", rightBorder)
 
+        # rightBorder < len(nums)用来判断右边界是否被修改过，即是否target大于所有元素。发现不加这个条件也可以通过。
+        # 因为如果target大于所有元素，则无法满足leftBorder <= rightBorder，leftBorder会大于rightBorder
+        # leftBorder <= rightBorder用来判断target是否存在元素中，如果存在，则至少是1个元素，满足leftBorder = rightBorder。
+
+        # 发现只需要保留leftBorder <= rightBorder这个条件即可。
+        # 如果target小于所有元素，leftBorder=0, right=-1
+        # 如果target大于所有元素，leftBorder=len(nums), right=len(nums)-1
+        # 如果target在范围内但不等于任意元素，leftBorder=index(从右往左第一个小于target的数), right=index(从右往左第一个小于target的数)-1
         if leftBorder <= rightBorder and rightBorder < len(nums) and nums[leftBorder] == target and nums[rightBorder] == target:
             return [leftBorder, rightBorder]
         else:
             return [-1, -1]
-
-
-
-
 
 
     # 解法4
@@ -179,10 +187,18 @@ class Solution(object):
 if __name__ == "__main__":
     so = Solution()
     print(so.searchRange_1([5, 7, 7, 8, 8, 10], 8))
-    print(so.searchRange_4([5, 7, 7, 8, 8, 10], 8))
-    print(so.searchRange_1([5 ,7, 7, 8, 8, 10], 9))
-    print(so.searchRange_4([5 ,7, 7, 8, 8, 10], 9))
-    print(so.searchRange_1([5,7,7,8,8,10], 6))
-    print(so.searchRange_4([5,7,7,8,8,10], 6))
-    print(so.searchRange_1([], 0))
-    print(so.searchRange_4([], 0))
+    print(so.searchRange_3([5, 7, 7, 8, 8, 10], 8))
+    print(so.searchRange_1([1], 1))
+    print(so.searchRange_3([1], 1))
+    print(so.searchRange_1([5, 7, 7, 8, 8, 10], 9))
+    print(so.searchRange_3([5, 7, 7, 8, 8, 10], 9))
+    print(so.searchRange_1([5, 7, 7, 8, 8, 10], 6))
+    print(so.searchRange_3([5, 7, 7, 8, 8, 10], 6))
+    # print(so.searchRange_1([5,7,7,8,8,10], 4))
+    # print(so.searchRange_3([5,7,7,8,8,10], 4))
+    # print(so.searchRange_1([5,7,7,8,8,10], 11))
+    # print(so.searchRange_3([5,7,7,8,8,10], 11))
+    # print(so.searchRange_1([], 0))
+    # print(so.searchRange_3([], 0))
+    # print(so.searchRange_1([2, 2], 3))
+    # print(so.searchRange_3([2, 2], 3))
