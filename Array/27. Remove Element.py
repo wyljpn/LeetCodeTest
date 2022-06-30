@@ -26,8 +26,42 @@ class Solution(object):
 
         return slow
 
+    def removeElement_2(self, nums, val):
+        """
+        :type nums: List[int]
+        :type val: int
+        :rtype: int
+        """
+        left = 0
+        right = len(nums) - 1
+
+        while left <= right:
+            # 查找等于val的index
+            while left <= right and nums[left] != val:
+                left += 1
+
+            # 查找不等于val的index
+            while left <= right and nums[right] == val:
+                right -= 1
+
+            # print("left :", left)
+            # print("right :", right)
+
+            # 交换
+            # 如果left和right中间没有val的话，就退出
+            if left <= right:
+                nums[left] = nums[right]
+                left += 1
+                right -= 1
+
+        return left
+
 
 if __name__ == "__main__":
     so = Solution()
     print(so.removeElement([3, 2, 2, 3], 3))
-    print(so.removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2))
+    print(so.removeElement_2([3, 2, 2, 3], 3))
+    print(so.removeElement([3, 2, 2, 3], 5))
+    print(so.removeElement_2([3, 2, 2, 3], 5))
+    # print(so.removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2))
+    # print(so.removeElement_2([0, 1, 2, 2, 3, 0, 4, 2], 2))
