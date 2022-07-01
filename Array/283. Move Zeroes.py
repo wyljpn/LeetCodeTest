@@ -31,6 +31,19 @@ class Solution(object):
             else:
                 i += 1
 
+    # 快慢指针
+    def moveZeroes_3(self, nums):
+        slow = 0
+        fast = 0
+
+        while fast < len(nums):
+            if nums[fast] != 0:
+                nums[slow] = nums[fast]
+                if fast != slow:
+                    nums[fast] = 0
+                slow += 1
+            fast += 1
+
 
 so = Solution()
 print(so.moveZeroes([0, 1, 0, 3, 12]))
