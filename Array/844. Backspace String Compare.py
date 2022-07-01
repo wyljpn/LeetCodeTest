@@ -51,9 +51,11 @@ class Solution(object):
                 else:
                     break
 
+            # 正常在字符串范围内查找
             if s_index >= 0 and t_index >= 0:
                 if s[s_index] != t[t_index]:
                     return False
+            # 有一个字符串的有效长度大于另一个，肯定是不想等
             elif s_index >= 0 or t_index >= 0:
                 return False
 
@@ -66,10 +68,10 @@ class Solution(object):
 
 if __name__ == "__main__":
     so = Solution()
-    print(so.backspaceCompare("ab#c", "ad#c"))  # True
-    print(so.backspaceCompare("ab##", "c#d#"))  # True
-    print(so.backspaceCompare("a#c", "b"))      # False
-    print(so.backspaceCompare("##c", "c"))      # True
+    # print(so.backspaceCompare("ab#c", "ad#c"))  # True
+    # print(so.backspaceCompare("ab##", "c#d#"))  # True
+    # print(so.backspaceCompare("a#c", "b"))      # False
+    # print(so.backspaceCompare("##c", "c"))      # True
     print(so.backspaceCompare("bxj##tw", "bxj###tw"))  # False
 
 
