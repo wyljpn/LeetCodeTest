@@ -13,6 +13,9 @@
 # It does not matter what you leave beyond the returned k (hence they are underscores).
 
 class Solution(object):
+
+    # 快慢指针
+    # 当fast指向的元素与slow指向的元素不同的时候，就增加slow，并且nums[slow] = nums[fast]
     def removeDuplicates(self, nums):
         """
         :type nums: List[int]
