@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e4eab42-a396-4b0c-8b1f-88b75a9f92a2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Binary_Search/704. Binary Search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
