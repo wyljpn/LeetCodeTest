@@ -29,9 +29,7 @@ class Solution(object):
 
             for key, value in t_dict.items():
                 if s_dict[key] < value:
-                    # print("False")
                     return False
-            # print("True")
             return True
 
         from collections import defaultdict
@@ -47,28 +45,68 @@ class Solution(object):
 
         for fast in range(len(s)):
             s_dict[s[fast]] += 1
-            # print("s_dict:", s_dict)
 
             while isSubString(s_dict, t_dict):
                 if min_len > (fast - slow + 1):
                     min_len = fast - slow + 1
                     res = s[slow:fast + 1]
-                # min_len = min(min_len, fast - slow + 1)
-                # print("min_len: ", min_len)
-                # res = s[slow:fast+1]
-                # print("res:", res)
                 s_dict[s[slow]] -= 1
                 slow += 1
-                # print("after s_dict:", s_dict)
-
-            # print("fast: ", fast)
-            # print("slow: ", slow)
 
         return res if min_len != float("inf") else ""
+
+
+    def minWindow_2(self, s, t):
+        needDict = {}
+        for char in t:
+            if char not in needDict.keys():
+                needDict[char] = 1
+            else:
+                needDict[char] += 1
+        needLen = len(t)
+        # print("needDic: ", needDict)
+
+        slow = 0
+        minLen = float("inf")
+        res = ""
+
+        for fast in range(len(s)):
+            if s[fast] in needDict.keys():
+                if needDict[s[fast]] > 0:
+                    needLen -= 1
+                needDict[s[fast]] -= 1
+
+            # print("needDict: ", needDict)
+            while needLen == 0:
+                # print("slow: ", slow)
+                # print("fast: ", fast)
+                # print("minLen: ", minLen)
+                # print("needLen: ", needLen)
+                if minLen > (fast - slow + 1):
+                    minLen = fast - slow + 1
+                    res = s[slow:fast+1]
+                #     print("res: ", res)
+                # print("s[slow]: ", s[slow])
+                if s[slow] in needDict.keys():
+                    if needDict[s[slow]] == 0:
+                        needLen += 1
+                    needDict[s[slow]] += 1
+
+                # print("after needDict: ", needDict)
+                slow += 1
+
+        return res if minLen != float("inf") else ""
+
 
 if __name__ == "__main__":
     so = Solution()
     print(so.minWindow("ADOBECODEBANC", "ABC"))
+    print(so.minWindow_2("ADOBECODEBANC", "ABC"))
     print(so.minWindow("a", "a"))
+    print(so.minWindow_2("a", "a"))
     print(so.minWindow("a", "aa"))
+    print(so.minWindow_2("a", "aa"))
     print(so.minWindow("cabwefgewcwaefgcf", "cae"))
+    print(so.minWindow_2("cabwefgewcwaefgcf", "cae"))
+    print(so.minWindow("bba", "ab"))
+    print(so.minWindow_2("bba", "ab"))
