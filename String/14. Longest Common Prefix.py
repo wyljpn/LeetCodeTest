@@ -54,8 +54,8 @@ class Solution:
         return strs[0]
 
 
-if __name__ =="__main__":
+if __name__ == "__main__":
 
     so = Solution()
-    print(so.longestCommonPrefix(["flower","flow","flight"]))
-    print(so.longestCommonPrefix(["dog","racecar","car"]))
+    print(so.longestCommonPrefix(["flower", "flow", "flight"]))
+    print(so.longestCommonPrefix(["dog", "racecar", "car"]))
