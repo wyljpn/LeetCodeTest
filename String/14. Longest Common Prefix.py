@@ -53,7 +53,9 @@ class Solution:
         # strs[0] is the common prefix
         return strs[0]
 
-so = Solution()
-print(so.longestCommonPrefix(["flower","flow","flight"]))
-print(so.longestCommonPrefix(["dog","racecar","car"]))
 
+if __name__ =="__main__":
+
+    so = Solution()
+    print(so.longestCommonPrefix(["flower","flow","flight"]))
+    print(so.longestCommonPrefix(["dog","racecar","car"]))
