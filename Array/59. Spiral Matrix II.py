@@ -22,6 +22,7 @@ class Solution(object):
         res = [[0 for i in range(n)] for i in range(n)]
         print("res: ", res)
 
+        # 牢记左闭右开的原则
         for l in range(loop):
             print("l: ", l)
             for j in range(starty, n - 1 - offset):
@@ -64,7 +65,7 @@ class Solution(object):
 
 if __name__ == "__main__":
     so = Solution()
-    # print(so.generateMatrix(2))
+    print(so.generateMatrix(2))
     # print(so.generateMatrix(3))
     # print(so.generateMatrix(4))
-    print(so.generateMatrix(5))
+    # print(so.generateMatrix(5))
