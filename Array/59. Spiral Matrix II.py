@@ -19,7 +19,7 @@ class Solution(object):
         offset = 0
         loop = n // 2
         counter = 1
-        res = [[0 for i in range(n)] for i in range(n)]
+        res = [[0] * n for _ in range(n)]
         print("res: ", res)
 
         # 牢记左闭右开的原则
@@ -63,9 +63,53 @@ class Solution(object):
 
         return res
 
+
+    def generateMatrix_2(self, n):
+
+        startx, starty = 0, 0
+        loop, mid = n // 2, n // 2
+        counter = 1
+
+        res = [[0] * n for _ in range(n)]
+
+        for offset in range(1, loop + 1):
+            for j in range(starty, n - offset):
+                res[startx][j] = counter
+                counter += 1
+                print("left->right")
+                print("res: ", res)
+
+            for i in range(startx, n - offset):
+                res[i][n-offset] = counter
+                counter += 1
+                print("top->bottom")
+                print("res: ", res)
+
+            for j in range(n - offset, starty, -1):
+                res[n-offset][j] = counter
+                counter += 1
+                print("right->left")
+                print("res: ", res)
+
+            for i in range(n - offset, startx, -1):
+                res[i][startx] = counter
+                counter += 1
+                print("bottom->top")
+                print("res: ", res)
+
+            startx += 1
+            starty += 1
+
+        if n % 2 != 0:
+            res[mid][mid] = counter
+
+        return res
+
+
 if __name__ == "__main__":
     so = Solution()
-    print(so.generateMatrix(2))
+    # print(so.generateMatrix(2))
+    print(so.generateMatrix_2(2))
     # print(so.generateMatrix(3))
     # print(so.generateMatrix(4))
     # print(so.generateMatrix(5))
