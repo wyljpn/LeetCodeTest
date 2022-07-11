@@ -40,7 +40,7 @@ class Solution(object):
         return res
 
 
-    def preorderTraversal(self, root):
+    def preorderTraversal_2(self, root):
         res = []
 
         if not root:

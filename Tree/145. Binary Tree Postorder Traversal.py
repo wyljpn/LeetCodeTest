@@ -37,3 +37,31 @@ class Solution(object):
         traversal(root)
 
         return res
+
+    def postorderTraversal_2(self, root):
+
+        if not root:
+            return []
+
+        stack = []
+        result = []
+
+        cur = root
+
+        while cur or stack:
+            if cur:
+                stack.append(cur)
+                cur = cur.left
+            else:
+                node = stack.pop()
+                result.append(node.val)
+                cur = node.right
+
+        return result
+
+
+
+
+
+
+        pass
