@@ -38,3 +38,22 @@ class Solution(object):
         traversal(root)
 
         return res
+
+
+    def preorderTraversal(self, root):
+        res = []
+
+        if not root:
+            return []
+
+        stack = [root]
+
+        while stack:
+            node = stack.pop()
+            res.append(node.val)
+            if node.right:
+                stack.append(node.right)
+            if node.left:
+                stack.append(node.left)
+
+        return res
