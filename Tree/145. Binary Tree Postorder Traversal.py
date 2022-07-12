@@ -43,25 +43,19 @@ class Solution(object):
         if not root:
             return []
 
-        stack = []
+        stack = [root]
         result = []
 
-        cur = root
+        while stack:
+            node = stack.pop()
 
-        while cur or stack:
-            if cur:
-                stack.append(cur)
-                cur = cur.left
-            else:
-                node = stack.pop()
-                result.append(node.val)
-                cur = node.right
+            result.append(node.val)
+            if node.right:
+                result.append(node.right)
+            if node.left:
+                result.append(node.left)
+
+        return result[::-1]
+
 
         return result
-
-
-
-
-
-
-        pass
