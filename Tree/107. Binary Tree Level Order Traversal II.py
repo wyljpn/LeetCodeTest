@@ -56,3 +56,4 @@ class Solution(object):
                 queue.append([node.left, level + 1])
                 queue.append([node.right, level + 1])
         return res
+
