@@ -27,8 +27,7 @@ class Solution(object):
         while queue:
             print(dic)
             node, depth = queue.popleft()
-            if node:
-                dic[depth].append(node.val)
+            dic[depth].append(node.val)
             if node.left:
                 queue.append((node.left, depth + 1))
             if node.right:
