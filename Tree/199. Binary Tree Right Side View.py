@@ -81,3 +81,31 @@ class Solution(object):
                 queue.append((node.right, depth+1))
 
         return [rightmost_value_at_depth[depth] for depth in range(max_depth + 1)]
+
+    def rightSideView_2(self, root):
+        result = []
+
+        if not root:
+            return result
+
+        from collections import deque
+
+        que = deque()
+        que.append(root)
+
+        while que:
+            size = len(que)
+
+            node = None
+            for _ in range(size):
+                node = que.popleft()
+
+                if node.left:
+                    que.append(node.left)
+
+                if node.right:
+                    que.append(node.right)
+
+            result.append(node.val)
+
+        return result
