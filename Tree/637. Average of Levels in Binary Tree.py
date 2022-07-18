@@ -60,3 +60,4 @@ class Solution(object):
         dfs(root)
 
         return [s / float(c) for s, c in info]
+
