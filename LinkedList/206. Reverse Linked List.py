@@ -13,8 +13,8 @@ class Solution(object):
         cur = head
         pre = None
 
-        while cur:
+        while cur: # 因为要链接最后一个item的next到倒数第二个，所以是while cur，而不是cur.next
             cur.next, cur, pre = pre, cur.next, cur
 
-        return pre
+        return pre # 此时cur已经是None，pre是最后一个item
 
