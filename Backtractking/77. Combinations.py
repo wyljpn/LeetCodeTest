@@ -23,13 +23,13 @@ class Solution(object):
 
         def backTracking(n, k, startIndex):
             if len(path) == k:
-                result.append(path[:])
+                result.append(path[:])  # 复制值，生成新的list
                 return
 
-            for i in range(startIndex, n + 1):
-                path.append(i)
-                backTracking(n, k, i + 1)
-                path.pop()
+            for i in range(startIndex, n + 1):  # 遍历当前层
+                path.append(i)     # 处理当前值
+                backTracking(n, k, i + 1)   # 递归
+                path.pop()         # 回溯
 
         backTracking(n, k, 1)
         return result
