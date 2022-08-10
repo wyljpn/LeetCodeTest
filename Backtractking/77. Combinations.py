@@ -26,7 +26,34 @@ class Solution(object):
                 result.append(path[:])  # 复制值，生成新的list
                 return
 
+            # 第一层遍历要从1开始，到n结束。
+            # 类推范围是(startIndex，n + 1)
             for i in range(startIndex, n + 1):  # 遍历当前层
+                path.append(i)     # 处理当前值
+                backTracking(n, k, i + 1)   # 递归
+                path.pop()         # 回溯
+
+        backTracking(n, k, 1)
+        return result
+
+
+    def combine_2(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        result = []
+        path = []
+
+        def backTracking(n, k, startIndex):
+            if len(path) == k:
+                result.append(path[:])  # 复制值，生成新的list
+                return
+
+            # 第一层遍历要从1开始，到n - (k - 0) + 1结束。
+            # 类推范围是(startIndex，n - (k - len(path)) + 1 + 1)
+            for i in range(startIndex, n - (k - len(path)) + 2):  # 剪枝
                 path.append(i)     # 处理当前值
                 backTracking(n, k, i + 1)   # 递归
                 path.pop()         # 回溯
