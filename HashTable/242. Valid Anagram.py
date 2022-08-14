@@ -1,4 +1,5 @@
 class Solution(object):
+    # 使用数组
     def isAnagram(self, s, t):
         """
         :type s: str
@@ -19,7 +20,7 @@ class Solution(object):
 
         return True
 
-
+    # 使用defaultdict
     def isAnagram_2(self, s, t):
         from collections import defaultdict
         s_dic = defaultdict(int)
