@@ -13,13 +13,14 @@ class Solution(object):
             return
 
         for i in range(startIndex, len(candidates)):
+            # 剪枝
             if sum_ + candidates[i] > target:
                 return
 
             # 跳过同一树层使用过的元素
             # [10,1,2,7,6,1,5], 8
             # [1, 1, 2, 5, 6, 7, 10].
-            # i <= startIndex 是为了允许同一个path中可以使用重复出现的元素。
+            # i == startIndex为false 是为了允许一个path中使用重复出现的元素。
             # 用i > startIndex and candidates[i] == candidates[i - 1]来重复的组合。
             # 当startIndex=0，允许[1, 7] index=0； 不允许[1, 7] index =1
             if i > startIndex and candidates[i] == candidates[i - 1]:
