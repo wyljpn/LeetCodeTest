@@ -21,7 +21,7 @@ class Solution(object):
         result = []
         path = []
 
-        def backTracking(n, k, startIndex):
+        def backtracking(n, k, startIndex):
             if len(path) == k:
                 result.append(path[:])  # 复制值，生成新的list
                 return
@@ -30,10 +30,10 @@ class Solution(object):
             # 类推范围是(startIndex，n + 1)
             for i in range(startIndex, n + 1):  # 遍历当前层
                 path.append(i)     # 处理当前值
-                backTracking(n, k, i + 1)   # 递归
+                backtracking(n, k, i + 1)   # 递归
                 path.pop()         # 回溯
 
-        backTracking(n, k, 1)
+        backtracking(n, k, 1)
         return result
 
 
@@ -46,7 +46,7 @@ class Solution(object):
         result = []
         path = []
 
-        def backTracking(n, k, startIndex):
+        def backtracking(n, k, startIndex):
             if len(path) == k:
                 result.append(path[:])  # 复制值，生成新的list
                 return
@@ -55,8 +55,8 @@ class Solution(object):
             # 类推范围是(startIndex，n - (k - len(path)) + 1 + 1)
             for i in range(startIndex, n - (k - len(path)) + 2):  # 剪枝
                 path.append(i)     # 处理当前值
-                backTracking(n, k, i + 1)   # 递归
+                backtracking(n, k, i + 1)   # 递归
                 path.pop()         # 回溯
 
-        backTracking(n, k, 1)
+        backtracking(n, k, 1)
         return result
