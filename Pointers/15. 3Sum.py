@@ -12,10 +12,10 @@ class Solution(object):
             left = i + 1
             right = n - 1
 
-            if nums[i] > 0:
+            if nums[i] > 0:  # 剪枝
                 break
 
-            if i >= 1 and nums[i] == nums[i - 1]:
+            if i >= 1 and nums[i] == nums[i - 1]:  # 去重
                 continue
 
             while left < right:
@@ -27,9 +27,9 @@ class Solution(object):
                     left += 1
                 else:
                     ans.append([nums[i], nums[left], nums[right]])
-                    while left != right and nums[left] == nums[left + 1]:
+                    while left != right and nums[left] == nums[left + 1]:  # 去重
                         left += 1
-                    while left != right and nums[right] == nums[right - 1]:
+                    while left != right and nums[right] == nums[right - 1]:  # 去重
                         right -= 1
 
                     left += 1
