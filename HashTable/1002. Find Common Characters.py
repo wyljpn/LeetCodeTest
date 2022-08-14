@@ -28,3 +28,23 @@ class Solution(object):
 
         return result
 
+
+    # 使用collections.Counter
+    def commonChars_2(self, words):
+
+        import collections
+
+        result = []
+        tmp = collections.Counter(words[0])
+        l = []
+        for i in range(1, len(words)):
+            # 使用 & 取交集
+            tmp = tmp & collections.Counter(words[i])
+
+        # 剩下的就是每个单词都出现的字符（键），个数（值）
+        for char, value in tmp.items():
+            if value != 0:
+                print(char)
+                result.extend([char] * value)
+
+        return result
