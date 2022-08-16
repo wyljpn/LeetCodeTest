@@ -7,6 +7,8 @@ class Solution(object):
 
         # 限制条件：一个组合中，允许有相同的元素,[-1, -1, 2]。但是不允许有完全相同的组合, [-1, -1, 2] 和 [-1, -1, 2]。
         # 在[-1, -1, 2, 2]中，result中只允许一个[-1, -1, 2]
+        # result中第一个元素的限制：完全不允许重复，因为结果是一样的。
+        # result中第二个元素的限制：
         ans = []
         n = len(nums)
         nums.sort()
@@ -18,7 +20,7 @@ class Solution(object):
             if nums[i] > 0:  # 剪枝
                 break
 
-            if i >= 1 and nums[i] == nums[i - 1]:  # 去重
+            if i >= 1 and nums[i] == nums[i - 1]:  # 第一个元素去重
                 continue
 
             while left < right:
@@ -30,9 +32,9 @@ class Solution(object):
                     left += 1
                 else:
                     ans.append([nums[i], nums[left], nums[right]])
-                    while left != right and nums[left] == nums[left + 1]:  # 去重
+                    while left != right and nums[left] == nums[left + 1]:  # 第二个元素去重
                         left += 1
-                    while left != right and nums[right] == nums[right - 1]:  # 去重
+                    while left != right and nums[right] == nums[right - 1]:  # 第三个元素去重
                         right -= 1
 
                     left += 1
