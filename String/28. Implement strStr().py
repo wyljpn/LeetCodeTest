@@ -63,10 +63,11 @@ class Solution(object):
         # 遍历要查找的字符串
         for j in range(b):
 
+            # 比较needle[p + 1] 与 haystack[j]
             # 比较在needle中的元素，不包含第一个元素(p为-1的情况)。
             # 因为比较第一个元素，即使不匹配，也不用回退。
             # p==-1用来作为终止回退的条件。
-            while p >= 0 and haystack[j] != needle[p + 1]:  # 回退完了之后，是比较 next[p] + 1的位置
+            while p >= 0 and haystack[j] != needle[p + 1]:  # 回退完了之后，是比较 next[p] + 1的位置，补上了统一减去的1。
                 p = next[p]
 
             if haystack[j] == needle[p + 1]:
@@ -112,9 +113,10 @@ class Solution(object):
         # 遍历要查找的字符串
         for j in range(b):
 
-            # 比较在needle中的元素，不包含第一个元素(p为-1的情况)。
+            # 比较needle[p]（注意，与统一减一的方案不同） 与 haystack[j]
+            # 比较在needle中的元素，不包含第一个元素(p为0的情况)。
             # 因为比较第一个元素，即使不匹配，也不用回退。
-            # p==-1用来作为终止回退的条件。
+            # p==0用来作为终止回退的条件。
             while p >= 1 and haystack[j] != needle[p]:
                 p = next[p - 1]
 
@@ -127,6 +129,7 @@ class Solution(object):
 
         return -1
 
+    # 使用前缀表当成Next
     def getNext_2(self, needle):
         next = ['' for i in range(len(needle))]
         k = 0
