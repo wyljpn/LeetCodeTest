@@ -46,6 +46,104 @@ class Solution(object):
                 return i - 2 * n
         return -1
 
+    # KMP
+    # 前缀表全部都-1的方案
+    def strStr_4(self, haystack, needle):
+
+        a = len(needle)
+        b = len(haystack)
+
+        if a == 0:
+            return 0
+
+        next = self.getNext(needle)
+        # p是用来指向needle当前正在比较元素的index
+        p = -1
+
+        # 遍历要查找的字符串
+        for j in range(b):
+
+            # 比较在needle中的元素，不包含第一个元素(p为-1的情况)。
+            # 因为比较第一个元素，即使不匹配，也不用回退。
+            # p==-1用来作为终止回退的条件。
+            while p >= 0 and haystack[j] != needle[p + 1]:  # 回退完了之后，是比较 next[p] + 1的位置
+                p = next[p]
+
+            if haystack[j] == needle[p + 1]:
+                p += 1
+
+            # 匹配整个字串的时候，就返回其在字符串的index
+            if p == a - 1:
+                return j - a + 1
+
+        return -1
+
+    def getNext(self, needle):
+        next = ['' for i in range(len(needle))]
+        k = -1
+        next[0] = k
+
+        for i in range(1, len(needle)):
+            while k > -1 and needle[k + 1] != needle[i]:
+                k = next[k]
+
+            if needle[k + 1] == needle[i]:
+                k += 1
+
+            next[i] = k
+
+        return next
+
+
+    # KMP
+    # 直接使用前缀表方案
+    def strStr_5(self, haystack, needle):
+
+        a = len(needle)
+        b = len(haystack)
+
+        if a == 0:
+            return 0
+
+        next = self.getNext(needle)
+        # p是用来指向needle当前正在比较元素的index
+        p = 0
+
+        # 遍历要查找的字符串
+        for j in range(b):
+
+            # 比较在needle中的元素，不包含第一个元素(p为-1的情况)。
+            # 因为比较第一个元素，即使不匹配，也不用回退。
+            # p==-1用来作为终止回退的条件。
+            while p >= 1 and haystack[j] != needle[p]:
+                p = next[p - 1]
+
+            if haystack[j] == needle[p]:
+                p += 1
+
+            # 匹配整个字串的时候，就返回其在字符串的index
+            if p == a:
+                return j - a + 1
+
+        return -1
+
+    def getNext_2(self, needle):
+        next = ['' for i in range(len(needle))]
+        k = 0
+        next[0] = k
+
+        for i in range(1, len(needle)):
+            while k > 0 and needle[k] != needle[i]:
+                k = next[k - 1]
+
+            if needle[k] == needle[i]:
+                k += 1
+
+            next[i] = k
+
+        return next
+
+
 so = Solution()
 
 print(so.strStr("hello", "ll"))
