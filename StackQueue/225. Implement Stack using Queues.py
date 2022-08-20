@@ -23,10 +23,10 @@ class MyStack(object):
         sizeToPop = len(self.que) - 1
 
         while sizeToPop > 0:
-            self.que.append(self.que.pop())
+            self.que.append(self.que.popleft())
             sizeToPop -= 1
 
-        return self.que.pop()
+        return self.que.popleft()
 
     def top(self):
         """
