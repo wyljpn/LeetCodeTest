@@ -37,7 +37,7 @@ class Solution:
         for i in range(len(nums)):
             for j in range(bagSize + 1):
                 if (j - nums[i]) < 0:
-                    dp[i][j] = dp[i-1][j]
+                    dp[i][j] = dp[i - 1][j]
                 else:
                     dp[i][j] = dp[i - 1][j] + dp[i - 1][j - nums[i]]
 
