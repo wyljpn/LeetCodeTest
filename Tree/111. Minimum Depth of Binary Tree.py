@@ -7,7 +7,7 @@
 
 class Solution(object):
 
-    # bFS
+    # BFS
     def minDepth(self, root):
         if not root:
             return 0
@@ -15,7 +15,7 @@ class Solution(object):
         while queue:
             node, level = queue.pop(0)
             if node:
-                # 应为是按层遍历，第一次出现没有leaf的node就是最短的路径
+                # 因为是按层遍历，第一次出现没有leaf的node就是最短的路径
                 if not node.left and not node.right:
                     return level
                 else:
