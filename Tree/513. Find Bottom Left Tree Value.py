@@ -27,3 +27,32 @@ class Solution:
                     que.append(node.right)
 
         return result
+
+    def findBottomLeftValue_2(self, root):
+
+        max_depth = float('-inf')
+        leftmost_val = 0
+
+        def traversal(node, curDepth):
+            nonlocal max_depth, leftmost_val
+            if (not node.left) and (not node.right):
+                if curDepth > max_depth:
+                    max_depth = curDepth
+                    leftmost_val = node.val
+
+            if node.left:
+                curDepth += 1
+                traversal(node.left, curDepth)
+                curDepth -= 1
+
+            if node.right:
+                curDepth += 1
+                traversal(node.right, curDepth)
+                curDepth -= 1
+
+        if not root:
+            return 0
+
+        traversal(root, 0)
+
+        return leftmost_val
