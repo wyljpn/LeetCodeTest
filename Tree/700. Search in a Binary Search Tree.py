@@ -47,3 +47,18 @@ class Solution:
             return None
 
         return traversal(root, val)
+
+
+    # 迭代法。因为只要查找其中一条path，不用遍历所有path，所以可以替换root来查找。
+    def searchBST_3(self, root, val):
+
+        # 当root变成None当时候，退出循环，并且返回None
+        while root:
+            if root.val > val:
+                root = root.left
+            elif root.val < val:
+                root = root.right
+            else:
+                return root
+
+        return None
