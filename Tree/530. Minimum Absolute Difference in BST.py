@@ -39,3 +39,25 @@ class Solution(object):
                 search(node.right)
         search(root)
         return self.ans
+
+    def getMinimumDifference_2(self, root):
+
+        stack = []
+        cur = root
+        prev_node = None
+        min_diff = float("INF")
+
+        while cur or stack:
+            if cur:
+                stack.append(cur)
+                cur = cur.left
+            else:
+                cur = stack.pop()
+
+                if prev_node:
+                    min_diff = min(min_diff, cur.val - prev_node.val)
+
+                prev_node = cur
+                cur = cur.right
+
+        return min_diff
