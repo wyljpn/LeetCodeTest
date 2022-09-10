@@ -30,3 +30,20 @@ class Solution:
                     stack.append(node.right)
 
         return None
+
+    # Traversal way
+    def searchBST_2(self, root, val):
+
+        def traversal(node, val):
+            if not node or node.val == val:
+                return node
+
+            if node.left and node.val > val:
+                return traversal(node.left, val)
+
+            if node.right and node.val < val:
+                return traversal(node.right, val)
+
+            return None
+
+        return traversal(root, val)
