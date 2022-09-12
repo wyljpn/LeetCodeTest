@@ -54,3 +54,32 @@ class Solution:
 
         return root
 
+
+
+    def deleteNode_2(self, root, key):
+
+        def traversal(root, key):
+            if not root:
+                return None
+
+            if root.val > key:
+                root.left = traversal(root.left, key)
+            elif root.val < key:
+                root.right = traversal(root.right, key)
+            else:
+                if not root.left:
+                    return root.right
+                if not root.right:
+                    return root.left
+
+                cur = root.right
+
+                while cur.left:
+                    cur = cur.left
+
+                cur.left = root.left
+                root = root.right
+            return root
+
+        return traversal(root, key)
+
