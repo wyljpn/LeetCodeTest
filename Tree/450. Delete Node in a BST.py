@@ -25,7 +25,7 @@ class Solution:
             return target
 
         if not root:
-            return []
+            return None
 
         cur = root
         pre = None
