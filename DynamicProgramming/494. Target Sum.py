@@ -3,6 +3,7 @@ class Solution:
 
         sumValue = sum(nums)
 
+        # 为什么(sumValue + target) % 2 == 1的话，就没有方案呢？
         if abs(target) > sumValue or (sumValue + target) % 2 == 1:
             return 0
 
