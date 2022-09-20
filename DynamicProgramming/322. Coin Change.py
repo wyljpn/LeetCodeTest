@@ -26,6 +26,7 @@ class Solution(object):
         return res if res != float('inf') else -1
 
 
-so = Solution()
+if __name__ == "__main__":
+    so = Solution()
 
-print(so.coinChange([1,2,5], 11))
+    print(so.coinChange([1,2,5], 11))
