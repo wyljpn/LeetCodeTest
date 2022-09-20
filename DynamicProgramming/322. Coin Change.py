@@ -3,7 +3,9 @@ class Solution(object):
     # 我们采用自下而上的方式进行思考。仍定义 F(i)F(i) 为组成金额 ii 所需最少的硬币数量，假设在计算 F(i)F(i) 之前，我们已经计算出 F(0)-F(i-1)F(0)−F(i−1) 的答案。
 
     def coinChange(self, coins, amount):
-        dp = [0] + [float('inf') for i in range(amount)]
+        dp = [float('inf') for _ in range(amount + 1)]
+        dp[0] = 0
+        
         for i in range(1, amount + 1):
             for coin in coins:
                 if i - coin >= 0:
