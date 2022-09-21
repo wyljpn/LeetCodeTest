@@ -1,8 +1,6 @@
 class Solution(object):
     def rob(self, nums):
 
-        if len(nums) == 0:
-            return 0
         if len(nums) == 1:
             return nums[0]
 
@@ -15,7 +13,9 @@ class Solution(object):
 
         return dp[-1]
 
-so = Solution()
 
-print(so.rob([1,2,3,1]))
-print(so.rob([2,7,9,3,1]))
+if __name__ == "__main__":
+    so = Solution()
+
+    print(so.rob([1,2,3,1]))
+    print(so.rob([2,7,9,3,1]))
