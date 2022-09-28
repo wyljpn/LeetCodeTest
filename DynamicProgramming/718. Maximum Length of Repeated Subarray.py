@@ -3,13 +3,14 @@ class Solution:
 
         dp = [[0 for _ in range(len(nums2) + 1)] for _ in range(len(nums1) + 1)]
 
+
         result = 0
         for i in range(1, len(nums1) + 1):
             for j in range(1, len(nums2) + 1):
                 # 如果相等的话，就等于dp[i][j-1]+1
                 if nums1[i - 1] == nums2[j - 1]:
                     dp[i][j] = dp[i - 1][j - 1] + 1
-
+                    # 要用result = max(result, dp[i][j])来记录最大值，因为最大值不一定在dp数组的最后一行
                     result = max(result, dp[i][j])
             # print(dp)
         return result
