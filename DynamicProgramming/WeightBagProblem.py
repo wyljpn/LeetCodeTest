@@ -24,3 +24,4 @@ class Solution(object):
                 dp[j] = max(dp[j], dp[j - weight[i]] + value[i])
 
         return dp[-1]
+
