@@ -21,6 +21,9 @@ class Solution:
                     dp[i][j] = dp[i - 1][j - 1] + 1
                     result = max(dp[i][j], result)
         # print(dp)
+        for i in range(n):
+            dp[i][i] = 0
+            print(dp[i])
         return result
 
     def findLength_2(self, nums1, nums2):
@@ -51,3 +54,9 @@ class Solution:
         # print(dp)
         return result
 
+
+
+if __name__ == "__main__":
+    so = Solution()
+    print(so.findLength("aaabaab","aaabaab"))
+    print(so.findLength("abcabcdabc","abcabcdabc"))
