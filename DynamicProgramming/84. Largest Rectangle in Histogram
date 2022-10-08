@@ -1,0 +1,106 @@
+class Solution:
+    
+    # Two pointers
+    def largestRectangleArea(self, heights):
+        
+        res = heights[0]
+        
+        n = len(heights)
+        
+        for i in range(n):
+            
+            left = i
+            right = i
+            
+            # 找到最靠左边的大于等于当前值的index
+            while left >= 0 and heights[left] >= heights[i]:
+                left -= 1
+            
+            # 找到最靠右边的大于等于当前值的index
+            while right < n and heights[right] >= heights[i]:
+                right += 1
+            
+            width = right - left - 1
+            heigh = heights[i]
+            
+            res = max(width * heigh, res)
+
+        # print(res)
+
+        return (res)
+     class Solution:
+    
+    # dp
+    def largestRectangleArea2(self, heights):
+        
+        n = len(heights)
+        
+        # 每个柱子 左边第一个小于该柱子的下标
+        minLeftIndex = [0 for _ in range(n)]
+        # 每个柱子 右边第一个小于该柱子的下标
+        minRightIndex = [0 for _ in range(n)]
+        
+        # 记录每个柱子的左侧第一个矮一级的柱子的下标
+        minLeftIndex[0] = -1
+        for i in range(1, n):
+            t = i - 1
+            # 左侧的柱子持续较高时，尝试这个高柱子自己的次级柱子（DP
+            while t >= 0 and heights[t] >= heights[i]:
+                t = minLeftIndex[t]
+            # 当找到左侧矮一级的目标柱子时
+            minLeftIndex[i] = t
+        
+        # 记录每个柱子的右侧第一个矮一级的柱子的下标
+        minRightIndex[n-1] = n
+        for i in range(n-2, -1, -1):
+            t = i + 1
+            while t < n and heights[t] >= heights[i]:
+                t = minRightIndex[t]
+            minRightIndex[i] = t
+            
+        res = 0
+        
+        # 以当前元素为顶（高度），计算最宽（x轴*）的面积
+        for i in range(n):
+            width = minRightIndex[i] - minLeftIndex[i] - 1
+            height = heights[i]
+            cur = width * height
+            res = max(cur, res)
+        
+        return res
+        
+        
+    # 单调栈
+    # 从栈顶到底是从大到小
+    # 当遇到比当前值小的，就计算和pop
+    def largestRectangleArea3(self, heights):
+        
+        heights.insert(0, 0)
+        heights.append(0)
+        stack = [0]
+        result = 0
+        for i in range(1, len(heights)):
+            # 情况一
+            if heights[i] > heights[stack[-1]]:
+                stack.append(i)
+            # 情况二
+            elif heights[i] == heights[stack[-1]]:
+                stack.pop()
+                stack.append(i)
+            # 情况三
+            else:
+                # 抛出所有较高的柱子
+                while stack and heights[i] < heights[stack[-1]]:
+                    # 栈顶就是中间的柱子，主心骨
+                    mid_index = stack[-1]
+                    stack.pop()
+                    if stack:
+                        left_index = stack[-1]
+                        right_index = i
+                        width = right_index - left_index - 1
+                        height = heights[mid_index]
+                        result = max(result, width * height)
+                stack.append(i)
+        return result
+        
+        
