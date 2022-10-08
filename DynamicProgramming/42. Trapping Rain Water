@@ -1,0 +1,94 @@
+class Solution:
+
+    # Double pointers
+    # Time Limit Exceeded
+    def trap(self, heigh):
+        
+        n = len(heigh)        
+        res = 0
+        
+        for i in range(1, n-1):
+            
+            # Find the highest in left side
+            left = i - 1
+            maxleft = 0
+            while left >= 0:
+                maxleft = max(maxleft, heigh[left])
+                left -= 1
+            
+            # Find the highest in right side
+            right = i + 1
+            maxright = 0
+            while right < n:
+                maxright = max(maxright, heigh[right])
+                right += 1
+            
+            # Calculate the water and add to res
+            res += max(min(maxleft, maxright) - heigh[i], 0)
+        
+        # print(res)
+        
+        return (res)
+  
+    # dp 
+    # 节省了比较left和right的次数，不超时了。
+    def trap2(self, heigh):
+        
+        n = len(heigh)
+        
+        left = [0 for _ in range(n)]
+        right = [0 for _ in range(n)]
+        
+        # 计算左边的最大值，只比较一次
+        for i in range(1, n-1):
+            left[i] = max(left[i-1], heigh[i-1])
+        
+        
+        # 计算右边的最大值，只比较一次
+        for i in range(n-2, 0, -1):
+            right[i] = max(right[i+1], heigh[i+1])
+        
+        res = 0
+        
+        for i in range(1, n):
+            res += max(min(left[i], right[i]) - heigh[i], 0)
+        
+        return (res)
+                
+  
+    
+    # 使用单调栈
+    # 从栈顶到底从小到大
+    # 当栈顶小于当前值的时候，pop并计算雨水
+    def trap(self, heigh):
+        
+        stack = [0]
+        res = 0
+        
+        for i in range(1, len(heigh)):
+            
+            if heigh[i] < heigh[stack[-1]]:
+                
+                stack.append(i)
+            
+            elif heigh[i] == heigh[stack[-1]]:
+                stack.pop()
+                stack.append(i)
+            else:
+                while stack and heigh[i] > heigh[stack[-1]]:
+                    mid_heigh = heigh[stack[-1]]
+                    stack.pop()
+                    
+                    if stack:
+                        right_heigh = heigh[i]
+                        left_heigh = heigh[stack[-1]]
+                        # 两侧的较矮一方的高度 - 凹槽底部高度
+                        h = min(right_heigh, left_heigh) - mid_heigh
+                        # 凹槽右侧下标 - 凹槽左侧下标 - 1: 只求中间宽度
+                        w = i - stack[-1] - 1
+                        # 体积：高乘宽
+                        res += h * w
+                        
+                stack.append(i)
+        
+        return res
