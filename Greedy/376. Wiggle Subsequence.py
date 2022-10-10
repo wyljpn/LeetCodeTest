@@ -1,10 +1,8 @@
 class Solution:
     def wiggleMaxLength(self, nums):
         
+        # 初始值设置为1，用来补最后一个匹配的值
         result = 1
-        
-        if len(nums) == 1:
-            return result
         
         preDiff = 0
         
