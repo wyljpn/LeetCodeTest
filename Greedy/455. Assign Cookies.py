@@ -1,4 +1,5 @@
 class Solution(object):
+    # 优先喂饱胃口小的孩子
     def findContentChildren(self, g, s):
         """
         :type g: List[int]
@@ -7,7 +8,7 @@ class Solution(object):
         """
         g.sort()
         s.sort()
-           
+        
         # 用index来指向已经满足了的小孩子的下标，当cookie大于当前小孩子的胃口时，自增1
         index = 0
 
@@ -16,3 +17,17 @@ class Solution(object):
                 index += 1
 
         return index
+
+    # 优先喂饱胃口大的孩子
+    def findContentChildren2(self, g, s):
+        g.sort(reverse=True)
+        s.sort(reverse=True)
+        
+        index = 0
+        
+        for i in range(len(g)):
+            if index < len(s) and g[i] <= s[index]:
+                index += 1
+        
+        return index
+        
