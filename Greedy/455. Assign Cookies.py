@@ -7,11 +7,12 @@ class Solution(object):
         """
         g.sort()
         s.sort()
-
-        result = 0
+           
+        # 用index来指向已经满足了的小孩子的下标，当cookie大于当前小孩子的胃口时，自增1
+        index = 0
 
         for i in range(len(s)):
-            if result < len(g) and s[i] >= g[result]: # 要加result < len(g)，否则当满足条件的饼干比小孩多的时候，index会超出len(g)
-                result += 1
+            if index < len(g) and s[i] >= g[index]: # 要加result < len(g)，否则当满足条件的饼干比小孩多的时候，index会超出len(g)
+                index += 1
 
-        return result
+        return index
